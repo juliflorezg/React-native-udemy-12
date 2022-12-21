@@ -7,9 +7,9 @@ export const Animation101Screen = () => {
   const fadeIn = () => {
     Animated.timing(opacity, {
       toValue: 1,
-      duration: 3000,
+      duration: 300,
       useNativeDriver: true,
-    }).start(() => console.log('fade in animation finished'));
+    }).start(() => console.log('fade in animation finished!'));
   };
   const fadeOut = () => {
     Animated.timing(opacity, {
