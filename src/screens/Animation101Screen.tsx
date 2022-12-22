@@ -2,7 +2,7 @@ import React, {useRef} from 'react';
 import {Animated, Button, StyleSheet, View} from 'react-native';
 
 export const Animation101Screen = () => {
-  const opacity = useRef(new Animated.Value(0.4)).current;
+  const opacity = useRef(new Animated.Value(0)).current;
 
   const fadeIn = () => {
     Animated.timing(opacity, {
@@ -14,7 +14,7 @@ export const Animation101Screen = () => {
   const fadeOut = () => {
     Animated.timing(opacity, {
       toValue: 0,
-      duration: 3000,
+      duration: 300,
       useNativeDriver: true,
     }).start();
   };
