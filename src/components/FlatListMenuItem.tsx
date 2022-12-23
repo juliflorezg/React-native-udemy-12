@@ -20,14 +20,14 @@ export const FlatListMenuItem = ({menuItem}: Props) => {
       activeOpacity={0.8}
       onPress={() => navigate(menuItem.component as keyof RootStackParams)}>
       <View style={styles.container}>
-        <Icon name={menuItem.icon} color="grey" size={20} />
+        <Icon name={menuItem.icon} color="#8f00cd" size={20} />
         <Text style={styles.itemText}>
           {menuItem.name} - {menuItem.icon}
         </Text>
         <Icon
           name="caret-right"
           size={20}
-          color="green"
+          color="#8f00cd"
           style={styles.goIcon}
         />
       </View>
