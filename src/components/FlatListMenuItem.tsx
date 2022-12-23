@@ -21,9 +21,7 @@ export const FlatListMenuItem = ({menuItem}: Props) => {
       onPress={() => navigate(menuItem.component as keyof RootStackParams)}>
       <View style={styles.container}>
         <Icon name={menuItem.icon} color="#8f00cd" size={20} />
-        <Text style={styles.itemText}>
-          {menuItem.name} - {menuItem.icon}
-        </Text>
+        <Text style={styles.itemText}>{menuItem.name}</Text>
         <Icon
           name="caret-right"
           size={20}
