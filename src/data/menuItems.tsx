@@ -19,6 +19,6 @@ export const menuItems: MenuItem[] = [
   {
     name: 'Alert Component',
     icon: 'exclamation-circle',
-    component: 'SwitchScreen',
+    component: 'AlertScreen',
   },
 ];
