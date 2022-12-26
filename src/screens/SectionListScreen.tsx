@@ -1,6 +1,7 @@
 import React from 'react';
 import {SectionList, View, Text} from 'react-native';
 import {HeaderTitle} from '../components/HeaderTitle';
+import {ItemSeparator} from '../components/itemSeparator';
 import {publishers} from '../data/sectionListData';
 import {styles} from '../theme/appTheme';
 export const SectionListScreen = () => {
@@ -33,6 +34,9 @@ export const SectionListScreen = () => {
             Total characters: {section.data.length}
           </Text>
         )}
+        SectionSeparatorComponent={() => <ItemSeparator />}
+        ItemSeparatorComponent={() => <ItemSeparator />}
+        showsVerticalScrollIndicator={false}
       />
     </View>
   );
