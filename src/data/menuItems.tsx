@@ -31,4 +31,9 @@ export const menuItems: MenuItem[] = [
     icon: 'redo-alt',
     component: 'PullToRefreshScreen',
   },
+  {
+    name: 'SectionList Component',
+    icon: 'list-ul',
+    component: 'SectionListScreen',
+  },
 ];
