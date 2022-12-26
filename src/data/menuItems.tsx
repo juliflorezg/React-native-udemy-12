@@ -26,4 +26,9 @@ export const menuItems: MenuItem[] = [
     icon: 'font',
     component: 'TextInputScreen',
   },
+  {
+    name: 'PullToRefresh Component',
+    icon: 'redo-alt',
+    component: 'PullToRefreshScreen',
+  },
 ];
