@@ -21,4 +21,9 @@ export const menuItems: MenuItem[] = [
     icon: 'exclamation-circle',
     component: 'AlertScreen',
   },
+  {
+    name: 'TextInput Component',
+    icon: 'font',
+    component: 'TextInputScreen',
+  },
 ];
