@@ -6,7 +6,6 @@ import {styles} from '../theme/appTheme';
 export const SectionListScreen = () => {
   return (
     <View style={{...styles.globalMargin, flex: 1}}>
-      {/* <HeaderTitle title="SectionList component" /> */}
       <SectionList
         sections={publishers}
         renderItem={({item}) => <Text>{item}</Text>}
@@ -17,6 +16,23 @@ export const SectionListScreen = () => {
           </View>
         )}
         stickySectionHeadersEnabled
+        ListHeaderComponent={() => (
+          <HeaderTitle title="SectionList component" />
+        )}
+        ListFooterComponent={() => (
+          <HeaderTitle title={`Total publishers: ${publishers.length}`} />
+        )}
+        renderSectionFooter={({section}) => (
+          <Text
+            style={{
+              fontWeight: 'bold',
+              fontSize: 20,
+              marginTop: 10,
+              color: 'black',
+            }}>
+            Total characters: {section.data.length}
+          </Text>
+        )}
       />
     </View>
   );
