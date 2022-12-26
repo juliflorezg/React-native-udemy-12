@@ -19,9 +19,23 @@ export const ModalScreen = () => {
             justifyContent: 'center',
             alignItems: 'center',
           }}>
-          <View style={{backgroundColor: 'white'}}>
+          <View
+            style={{
+              backgroundColor: 'white',
+              width: 200,
+              height: 200,
+              justifyContent: 'center',
+              alignItems: 'center',
+              shadowOffset: {
+                width: 10,
+                height: 10,
+              },
+              shadowOpacity: 0.5,
+              elevation: 10,
+              borderRadius: 15,
+            }}>
             <HeaderTitle title="Modal" />
-            <Text>Modal Body</Text>
+            <Text style={{fontSize: 18, marginBottom: 15}}>Modal Body</Text>
             <Button title="Close" onPress={() => setIsVisible(false)} />
           </View>
         </View>
