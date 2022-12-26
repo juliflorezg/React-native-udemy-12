@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {
   Keyboard,
   KeyboardAvoidingView,
@@ -12,25 +12,16 @@ import {
 } from 'react-native';
 import {HeaderTitle} from '../components/HeaderTitle';
 import {styles} from '../theme/appTheme';
+import {useForm} from '../hooks/useForm';
+import {CustomSwitch} from '../components/CustomSwitch';
+
 export const TextInputScreen = () => {
-  const [form, setForm] = useState({
+  const {isSubscribed, form, onChange} = useForm({
     name: '',
     email: '',
     phone: '',
+    isSubscribed: false,
   });
-
-  type FormField = typeof form;
-
-  type Fields = keyof FormField;
-
-  const onChange = (field: Fields, value: string) => {
-    setForm({
-      ...form,
-      [field]: value,
-    });
-  };
-
-  console.log(setForm);
 
   return (
     <KeyboardAvoidingView
@@ -64,11 +55,18 @@ export const TextInputScreen = () => {
               keyboardType="email-address"
               onChangeText={value => onChange('email', value)}
             />
-            <View>
-              <Text>Phone number</Text>
+            <View style={textStyle.switchRow}>
+              <Text style={textStyle.switchText}>Subscribe?</Text>
+              <CustomSwitch
+                isOn={isSubscribed}
+                onChange={value => onChange('isSubscribed', value)}
+              />
             </View>
             <HeaderTitle title={JSON.stringify(form, null, 2)} />
             <HeaderTitle title={JSON.stringify(form, null, 2)} />
+            <View>
+              <Text>Phone number</Text>
+            </View>
             <TextInput
               style={textStyle.input}
               placeholder="Your phone"
@@ -94,5 +92,14 @@ const textStyle = StyleSheet.create({
     borderRadius: 10,
     borderColor: 'grey',
     marginBottom: 15,
+  },
+  switchRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 5,
+  },
+  switchText: {
+    fontSize: 25,
   },
 });
