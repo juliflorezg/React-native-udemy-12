@@ -1,5 +1,6 @@
-import React, {useState} from 'react';
+import React, {useRef, useState} from 'react';
 import {
+  Animated,
   Dimensions,
   Image,
   ImageSourcePropType,
@@ -7,10 +8,15 @@ import {
   StyleSheet,
   Text,
   View,
+  TouchableOpacity,
 } from 'react-native';
 import Carousel, {Pagination} from 'react-native-snap-carousel';
+import {} from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome5';
+import {useAnimation} from '../hooks/useAnimation';
+import {StackScreenProps} from '@react-navigation/stack';
 
-const {width: screenWidth, height: screenHeight} = Dimensions.get('window');
+const {width: screenWidth} = Dimensions.get('window');
 
 interface Slide {
   title: string;
@@ -36,8 +42,14 @@ const items: Slide[] = [
   },
 ];
 
-export const SlidesShowScreen = () => {
+interface Props extends StackScreenProps<any, any> {}
+
+export const SlidesShowScreen = ({navigation}: Props) => {
   const [activeSlide, setActiveSlide] = useState(0);
+  const {opacity, fadeIn} = useAnimation();
+  const isVisible = useRef(false);
+
+  const AnimatedTouchable = Animated.createAnimatedComponent(TouchableOpacity);
 
   const renderItem = (item: Slide) => {
     return (
@@ -70,20 +82,56 @@ export const SlidesShowScreen = () => {
         sliderWidth={screenWidth}
         itemWidth={screenWidth}
         layout="default"
-        onSnapToItem={index => setActiveSlide(index)}
-      />
-      <Pagination
-        dotsLength={items.length}
-        activeDotIndex={activeSlide}
-        containerStyle={{backgroundColor: 'rgba(0, 0, 0, 0.3)'}}
-        dotStyle={{
-          width: 10,
-          height: 10,
-          borderRadius: 5,
-          marginHorizontal: 8,
-          backgroundColor: '#40005b',
+        onSnapToItem={index => {
+          setActiveSlide(index);
+          if (index === items.length - 1) {
+            isVisible.current = true;
+            fadeIn();
+          }
         }}
       />
+      <View
+        style={{
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          margin: 20,
+        }}>
+        <Pagination
+          dotsLength={items.length}
+          activeDotIndex={activeSlide}
+          // containerStyle={{backgroundColor: 'rgba(0, 0, 0, 0.3)'}}
+          dotStyle={{
+            width: 10,
+            height: 10,
+            borderRadius: 5,
+            marginHorizontal: 4,
+            backgroundColor: '#40005b',
+          }}
+        />
+        <AnimatedTouchable
+          style={{
+            flexDirection: 'row',
+            justifyContent: 'center',
+            alignItems: 'center',
+            width: 130,
+            paddingVertical: 5,
+            paddingHorizontal: 8,
+            backgroundColor: '#40005b',
+            borderRadius: 5,
+            opacity,
+          }}
+          onPress={() => {
+            if (isVisible.current) {
+              navigation.navigate('HomeScreen');
+            }
+          }}
+          disabled={!isVisible.current}>
+          <Text style={{marginRight: 10, fontSize: 25, color: 'white'}}>
+            Enter
+          </Text>
+          <Icon name="chevron-circle-right" color="white" size={25} />
+        </AnimatedTouchable>
+      </View>
     </SafeAreaView>
   );
 };
