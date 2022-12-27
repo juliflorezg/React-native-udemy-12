@@ -46,4 +46,9 @@ export const menuItems: MenuItem[] = [
     icon: 'download',
     component: 'InfiniteScrollScreen',
   },
+  {
+    name: 'Slide Show',
+    icon: 'chalkboard',
+    component: 'SlidesShowScreen',
+  },
 ];
