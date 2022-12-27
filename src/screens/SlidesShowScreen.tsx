@@ -1,10 +1,54 @@
 import React from 'react';
-import {View} from 'react-native';
-import {HeaderTitle} from '../components/HeaderTitle';
+import {
+  Dimensions,
+  ImageSourcePropType,
+  SafeAreaView,
+  Text,
+} from 'react-native';
+import Carousel from 'react-native-snap-carousel';
+
+const {width: screenWidth, height: screenHeight} = Dimensions.get('window');
+
+interface Slide {
+  title: string;
+  desc: string;
+  img: ImageSourcePropType;
+}
+
+const items: Slide[] = [
+  {
+    title: 'Titulo 1',
+    desc: 'Ea et eu enim fugiat sunt reprehenderit sunt aute quis tempor ipsum cupidatat et.',
+    img: require('../assets/slide-1.png'),
+  },
+  {
+    title: 'Titulo 2',
+    desc: 'Anim est quis elit proident magna quis cupidatat culpa labore Lorem ea. Exercitation mollit velit in aliquip tempor occaecat dolor minim amet dolor enim cillum excepteur. ',
+    img: require('../assets/slide-2.png'),
+  },
+  {
+    title: 'Titulo 3',
+    desc: 'Ex amet duis amet nulla. Aliquip ea Lorem ea culpa consequat proident. Nulla tempor esse ad tempor sit amet Lorem. Velit ea labore aute pariatur commodo duis veniam enim.',
+    img: require('../assets/slide-3.png'),
+  },
+];
+
 export const SlidesShowScreen = () => {
+  const renderItem = (item: Slide) => {
+    return <Text>{item.desc}</Text>;
+  };
+
   return (
-    <View>
-      <HeaderTitle title="Slideshow Screen" />
-    </View>
+    <SafeAreaView style={{flex: 1, backgroundColor: 'crimson', paddingTop: 50}}>
+      <Carousel
+        // ref={c => {
+        //   this._carousel = c;
+        // }}
+        data={items}
+        renderItem={({item}) => renderItem(item)}
+        sliderWidth={screenWidth}
+        itemWidth={screenWidth}
+      />
+    </SafeAreaView>
   );
 };
