@@ -1,9 +1,12 @@
 import React from 'react';
 import {
   Dimensions,
+  Image,
   ImageSourcePropType,
   SafeAreaView,
+  StyleSheet,
   Text,
+  View,
 } from 'react-native';
 import Carousel from 'react-native-snap-carousel';
 
@@ -35,11 +38,27 @@ const items: Slide[] = [
 
 export const SlidesShowScreen = () => {
   const renderItem = (item: Slide) => {
-    return <Text>{item.desc}</Text>;
+    return (
+      <View
+        style={{
+          flex: 1,
+          backgroundColor: 'white',
+          borderRadius: 5,
+          padding: 10,
+          justifyContent: 'center',
+        }}>
+        <Image
+          source={item.img}
+          style={{width: 350, height: 400, resizeMode: 'center'}}
+        />
+        <Text style={styles.title}>{item.title}</Text>
+        <Text style={styles.subtitle}>{item.desc}</Text>
+      </View>
+    );
   };
 
   return (
-    <SafeAreaView style={{flex: 1, backgroundColor: 'crimson', paddingTop: 50}}>
+    <SafeAreaView style={{flex: 1, paddingTop: 50}}>
       <Carousel
         // ref={c => {
         //   this._carousel = c;
@@ -48,7 +67,19 @@ export const SlidesShowScreen = () => {
         renderItem={({item}) => renderItem(item)}
         sliderWidth={screenWidth}
         itemWidth={screenWidth}
+        layout="default"
       />
     </SafeAreaView>
   );
 };
+
+const styles = StyleSheet.create({
+  title: {
+    fontSize: 30,
+    fontWeight: 'bold',
+    color: '#40005b',
+  },
+  subtitle: {
+    fontSize: 16,
+  },
+});
