@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import {HeaderTitle} from '../components/HeaderTitle';
 // import { styles } from '../theme/appTheme';
+import {FadeInImage} from '../components/FadeInImage';
 export const InfiniteScrollScreen = () => {
   const [numbers, setNumbers] = useState([1, 2, 3, 4, 5]);
 
@@ -23,12 +24,11 @@ export const InfiniteScrollScreen = () => {
     }, 1500);
   };
   const renderItem = (item: number) => {
-    return (
-      <Image
-        source={{uri: `https://picsum.photos/id/${item}/500/400`}}
-        style={{width: '100%', height: 400}}
-      />
-    );
+    // <Image
+    //   source={{uri: `https://picsum.photos/id/${item}/500/400`}}
+    //   style={{width: '100%', height: 400}}
+    // />
+    return <FadeInImage uri={`https://picsum.photos/id/${item}/500/400`} />;
   };
   return (
     <View style={{flex: 1}}>
