@@ -1,24 +1,37 @@
 import React, {useState} from 'react';
-import {View, FlatList, Text, StyleSheet} from 'react-native';
+import {
+  View,
+  FlatList,
+  StyleSheet,
+  Image,
+  ActivityIndicator,
+} from 'react-native';
 import {HeaderTitle} from '../components/HeaderTitle';
 // import { styles } from '../theme/appTheme';
 export const InfiniteScrollScreen = () => {
-  const [numbers, setNumbers] = useState([0, 1, 2, 3, 4, 5]);
+  const [numbers, setNumbers] = useState([1, 2, 3, 4, 5]);
 
   const loadMore = () => {
     const newArray: number[] = [];
 
     for (let i = 0; i < 5; i++) {
-      newArray[i] = numbers.length + i;
+      newArray[i] = numbers.length + i + 1;
     }
 
-    setNumbers([...numbers, ...newArray]);
+    setTimeout(() => {
+      setNumbers([...numbers, ...newArray]);
+    }, 1500);
   };
   const renderItem = (item: number) => {
-    return <Text style={styles.textItem}>{item}</Text>;
+    return (
+      <Image
+        source={{uri: `https://picsum.photos/id/${item}/500/400`}}
+        style={{width: '100%', height: 400}}
+      />
+    );
   };
   return (
-    <View style={{flex: 1, backgroundColor: 'turquoise'}}>
+    <View style={{flex: 1}}>
       <FlatList
         data={numbers}
         renderItem={({item}) => renderItem(item)}
@@ -26,6 +39,11 @@ export const InfiniteScrollScreen = () => {
         ListHeaderComponent={() => <HeaderTitle title="Infinite Scroll" />}
         onEndReached={loadMore}
         onEndReachedThreshold={0.5}
+        ListFooterComponent={() => (
+          <View style={{height: 150, justifyContent: 'center'}}>
+            <ActivityIndicator size={50} color="turquoise" />
+          </View>
+        )}
       />
     </View>
   );
