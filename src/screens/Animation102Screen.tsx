@@ -1,5 +1,6 @@
-import React, {useRef} from 'react';
+import React, {useContext, useRef} from 'react';
 import {Animated, PanResponder, StyleSheet, View} from 'react-native';
+import {ThemeContext} from '../context/theme/ThemeContext';
 
 export const Animation102Screen = () => {
   const pan = useRef(new Animated.ValueXY()).current;
@@ -30,6 +31,10 @@ export const Animation102Screen = () => {
     },
   });
 
+  const {
+    theme: {colors},
+  } = useContext(ThemeContext);
+
   return (
     <View style={styles.container}>
       <Animated.View
@@ -37,6 +42,7 @@ export const Animation102Screen = () => {
         // style={[pan.getLayout(), styles.purpleBox]}
         style={{
           ...styles.purpleBox,
+          backgroundColor: colors.primary,
           transform: [
             {translateX: pan.getLayout().left},
             {translateY: pan.getLayout().top},
