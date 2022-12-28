@@ -1,3 +1,4 @@
+import {useTheme} from '@react-navigation/native';
 import React from 'react';
 import {Animated, Button, StyleSheet, View} from 'react-native';
 import {useAnimation} from '../hooks/useAnimation';
@@ -5,13 +6,16 @@ import {useAnimation} from '../hooks/useAnimation';
 export const Animation101Screen = () => {
   const {opacity, position, fadeIn, fadeOut, setPosition} = useAnimation();
 
+  const {colors} = useTheme();
+
   return (
-    <View style={styles.container}>
+    <View style={{...styles.container, backgroundColor: colors.background}}>
       <Animated.View
         //! Style property 'top' is not supported by native animated module (we can't animate top property)
         // style={{...styles.purpleBox, opacity, marginBottom: 20, top}}
         style={{
           ...styles.purpleBox,
+          backgroundColor: colors.primary,
           opacity,
           marginBottom: 20,
           transform: [
