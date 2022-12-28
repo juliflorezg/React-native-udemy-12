@@ -14,6 +14,7 @@ const customTheme: Theme = {
   dark: true,
   colors: {
     ...DarkTheme.colors,
+    background: '#16121b',
   },
 };
 
