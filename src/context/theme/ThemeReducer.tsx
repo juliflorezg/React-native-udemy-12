@@ -18,21 +18,21 @@ export const lightTheme: ThemeState = {
   currentTheme: 'light',
   dividerColor: 'rgba(0,0,0,0.7)',
   colors: {
-    primary: 'red',
+    primary: '#ff6060',
     background: 'white',
-    card: 'green',
+    card: 'grey',
     text: 'crimson',
-    border: 'orange',
-    notification: 'teal',
+    border: 'black',
+    notification: '#ff9898',
   },
 };
 
 export const darkTheme: ThemeState = {
   dark: false,
-  currentTheme: 'light',
+  currentTheme: 'dark',
   dividerColor: 'rgba(108, 194, 255, 0.698)',
   colors: {
-    primary: '#00aaff',
+    primary: '#0089cd',
     background: '#000214',
     card: '#1073cf2d',
     text: '#b0e5ff',
