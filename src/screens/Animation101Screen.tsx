@@ -1,6 +1,6 @@
 import {useTheme} from '@react-navigation/native';
 import React from 'react';
-import {Animated, Button, StyleSheet, View} from 'react-native';
+import {Animated, StyleSheet, View, TouchableOpacity, Text} from 'react-native';
 import {useAnimation} from '../hooks/useAnimation';
 
 export const Animation101Screen = () => {
@@ -28,20 +28,34 @@ export const Animation101Screen = () => {
           ],
         }}
       />
-      <Button
-        title="fade in"
+      <TouchableOpacity
+        activeOpacity={0.8}
         onPress={() => {
           fadeIn();
           setPosition(-100);
         }}
-      />
-      <Button
-        title="fade out"
+        style={{
+          backgroundColor: colors.primary,
+          padding: 10,
+          borderRadius: 10,
+          marginBottom: 15,
+        }}>
+        <Text style={styles.buttonText}>Fade In</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        activeOpacity={0.8}
         onPress={() => {
           fadeOut();
           setPosition(0, -100);
         }}
-      />
+        style={{
+          backgroundColor: colors.primary,
+          padding: 10,
+          borderRadius: 10,
+          marginBottom: 15,
+        }}>
+        <Text style={styles.buttonText}>Fade Out</Text>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -56,5 +70,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#5856d6',
     width: 150,
     height: 150,
+  },
+  buttonText: {
+    fontSize: 25,
   },
 });
