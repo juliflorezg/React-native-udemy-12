@@ -4,16 +4,24 @@ import {HeaderTitle} from '../components/HeaderTitle';
 import {ThemeContext} from '../context/theme/ThemeContext';
 import {styles} from '../theme/appTheme';
 export const ChangeThemeScreen = () => {
-  const {setDarkTheme} = useContext(ThemeContext);
+  const {
+    theme: {currentTheme, colors},
+    setDarkTheme,
+    setLightTheme,
+  } = useContext(ThemeContext);
+
+  const changeCurrentTheme = () => {
+    currentTheme === 'light' ? setDarkTheme() : setLightTheme();
+  };
 
   return (
     <View style={styles.globalMargin}>
       <HeaderTitle title="Change Theme" />
       <TouchableOpacity
-        onPress={setDarkTheme}
+        onPress={changeCurrentTheme}
         activeOpacity={0.8}
         style={{
-          backgroundColor: '#40005b',
+          backgroundColor: colors.primary,
           width: 150,
           height: 40,
           borderRadius: 15,
