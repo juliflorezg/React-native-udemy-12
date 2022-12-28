@@ -51,4 +51,9 @@ export const menuItems: MenuItem[] = [
     icon: 'chalkboard',
     component: 'SlidesShowScreen',
   },
+  {
+    name: 'Change Theme',
+    icon: 'cloud-sun',
+    component: 'ChangeThemeScreen',
+  },
 ];
