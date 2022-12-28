@@ -2,28 +2,33 @@ import 'react-native-gesture-handler';
 import React from 'react';
 // import {View, Text} from 'react-native';
 import {
-  DarkTheme,
-  DefaultTheme,
+  // DarkTheme,
+  // DefaultTheme,
   NavigationContainer,
-  Theme,
+  // Theme,
 } from '@react-navigation/native';
 import {Navigator} from './src/navigation/Navigator';
-import {useColorScheme} from 'react-native';
+import {ThemeProvider} from './src/context/theme/ThemeContext';
+// import {useColorScheme} from 'react-native';
 
-const customTheme: Theme = {
-  dark: true,
-  colors: {
-    ...DarkTheme.colors,
-    background: '#16121b',
-  },
-};
+// const customTheme: Theme = {
+//   dark: true,
+//   colors: {
+//     ...DarkTheme.colors,
+//     background: '#16121b',
+//   },
+// };
 
 const App = () => {
-  const scheme = useColorScheme();
+  // const scheme = useColorScheme();
   return (
-    <NavigationContainer theme={scheme === 'dark' ? customTheme : DefaultTheme}>
-      <Navigator />
-    </NavigationContainer>
+    <ThemeProvider>
+      <NavigationContainer
+      // theme={scheme === 'dark' ? customTheme : DefaultTheme}
+      >
+        <Navigator />
+      </NavigationContainer>
+    </ThemeProvider>
   );
 };
 
