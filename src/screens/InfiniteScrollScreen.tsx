@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {
   View,
   FlatList,
@@ -9,6 +9,8 @@ import {
 import {HeaderTitle} from '../components/HeaderTitle';
 // import { styles } from '../theme/appTheme';
 import {FadeInImage} from '../components/FadeInImage';
+import {ThemeContext} from '../context/theme/ThemeContext';
+
 export const InfiniteScrollScreen = () => {
   const [numbers, setNumbers] = useState([1, 2, 3, 4, 5]);
 
@@ -35,6 +37,10 @@ export const InfiniteScrollScreen = () => {
       />
     );
   };
+
+  const {
+    theme: {colors},
+  } = useContext(ThemeContext);
   return (
     <View style={{flex: 1}}>
       <FlatList
@@ -50,7 +56,7 @@ export const InfiniteScrollScreen = () => {
         onEndReachedThreshold={0.5}
         ListFooterComponent={() => (
           <View style={{height: 150, justifyContent: 'center'}}>
-            <ActivityIndicator size={50} color="turquoise" />
+            <ActivityIndicator size={50} color={colors.primary} />
           </View>
         )}
       />

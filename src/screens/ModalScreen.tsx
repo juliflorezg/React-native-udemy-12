@@ -1,13 +1,28 @@
-import React, {useState} from 'react';
-import {View, Button, Modal, Text} from 'react-native';
+import React, {useContext, useState} from 'react';
+import {View, Button, Modal, Text, TouchableOpacity} from 'react-native';
 import {HeaderTitle} from '../components/HeaderTitle';
+import {ThemeContext} from '../context/theme/ThemeContext';
 import {styles} from '../theme/appTheme';
 export const ModalScreen = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const {
+    theme: {colors},
+  } = useContext(ThemeContext);
+
   return (
     <View style={styles.globalMargin}>
       <HeaderTitle title="Modal Screen" />
-      <Button title="Open modal" onPress={() => setIsVisible(true)} />
+      <TouchableOpacity
+        style={{
+          backgroundColor: colors.primary,
+          alignItems: 'center',
+          paddingVertical: 15,
+          borderRadius: 3,
+        }}
+        onPress={() => setIsVisible(true)}>
+        <Text style={{fontSize: 18, fontWeight: 'bold'}}>OPEN MODAL</Text>
+      </TouchableOpacity>
+      {/* <Button title="Open modal" onPress={() => setIsVisible(true)} /> */}
       <Modal animationType="fade" visible={isVisible} transparent>
         {/* black background */}
         <View
@@ -15,13 +30,13 @@ export const ModalScreen = () => {
             flex: 1,
             // width: 100,
             // height: 100,
-            backgroundColor: 'rgba(0,0,0,0.3)',
+            backgroundColor: 'rgba(0,0,0,0.4)',
             justifyContent: 'center',
             alignItems: 'center',
           }}>
           <View
             style={{
-              backgroundColor: 'white',
+              backgroundColor: colors.card,
               width: 200,
               height: 200,
               justifyContent: 'center',
@@ -36,7 +51,18 @@ export const ModalScreen = () => {
             }}>
             <HeaderTitle title="Modal" />
             <Text style={{fontSize: 18, marginBottom: 15}}>Modal Body</Text>
-            <Button title="Close" onPress={() => setIsVisible(false)} />
+            <TouchableOpacity
+              style={{
+                backgroundColor: colors.primary,
+                alignItems: 'center',
+                paddingVertical: 5,
+                paddingHorizontal: 10,
+                borderRadius: 3,
+              }}
+              onPress={() => setIsVisible(false)}>
+              <Text style={{fontSize: 18, fontWeight: 'bold'}}>CLOSE</Text>
+            </TouchableOpacity>
+            {/* <Button title="Close" onPress={() => setIsVisible(false)} /> */}
           </View>
         </View>
       </Modal>

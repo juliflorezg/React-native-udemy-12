@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react';
+import React, {useContext, useRef, useState} from 'react';
 import {
   Animated,
   Dimensions,
@@ -15,6 +15,7 @@ import {} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import {useAnimation} from '../hooks/useAnimation';
 import {StackScreenProps} from '@react-navigation/stack';
+import {ThemeContext} from '../context/theme/ThemeContext';
 
 const {width: screenWidth} = Dimensions.get('window');
 
@@ -51,12 +52,16 @@ export const SlidesShowScreen = ({navigation}: Props) => {
 
   const AnimatedTouchable = Animated.createAnimatedComponent(TouchableOpacity);
 
+  const {
+    theme: {colors},
+  } = useContext(ThemeContext);
+
   const renderItem = (item: Slide) => {
     return (
       <View
         style={{
           flex: 1,
-          backgroundColor: 'white',
+          backgroundColor: colors.background,
           borderRadius: 5,
           padding: 10,
           justifyContent: 'center',
@@ -65,8 +70,10 @@ export const SlidesShowScreen = ({navigation}: Props) => {
           source={item.img}
           style={{width: 350, height: 400, resizeMode: 'center'}}
         />
-        <Text style={styles.title}>{item.title}</Text>
-        <Text style={styles.subtitle}>{item.desc}</Text>
+        <Text style={{...styles.title, color: colors.text}}>{item.title}</Text>
+        <Text style={{...styles.subtitle, color: colors.text}}>
+          {item.desc}
+        </Text>
       </View>
     );
   };
@@ -105,7 +112,7 @@ export const SlidesShowScreen = ({navigation}: Props) => {
             height: 10,
             borderRadius: 5,
             marginHorizontal: 4,
-            backgroundColor: '#40005b',
+            backgroundColor: colors.primary,
           }}
         />
         <AnimatedTouchable
@@ -116,7 +123,7 @@ export const SlidesShowScreen = ({navigation}: Props) => {
             width: 130,
             paddingVertical: 5,
             paddingHorizontal: 8,
-            backgroundColor: '#40005b',
+            backgroundColor: colors.primary,
             borderRadius: 5,
             opacity,
           }}
@@ -126,7 +133,7 @@ export const SlidesShowScreen = ({navigation}: Props) => {
             }
           }}
           disabled={!isVisible.current}>
-          <Text style={{marginRight: 10, fontSize: 25, color: 'white'}}>
+          <Text style={{marginRight: 10, fontSize: 25, color: colors.text}}>
             Enter
           </Text>
           <Icon name="chevron-circle-right" color="white" size={25} />

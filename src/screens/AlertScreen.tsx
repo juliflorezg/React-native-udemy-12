@@ -1,8 +1,16 @@
-import React from 'react';
-import {Alert, Button, View} from 'react-native';
+import React, {useContext} from 'react';
+import {
+  Alert,
+  Pressable,
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+} from 'react-native';
 import {HeaderTitle} from '../components/HeaderTitle';
 import {styles} from '../theme/appTheme';
 import prompt from 'react-native-prompt-android';
+import {ThemeContext} from '../context/theme/ThemeContext';
 
 export const AlertScreen = () => {
   const showAlert = () => {
@@ -44,12 +52,41 @@ export const AlertScreen = () => {
     );
   };
 
+  const {
+    theme: {colors},
+  } = useContext(ThemeContext);
+
   return (
     <View style={styles.globalMargin}>
       <HeaderTitle title="Alert component" />
-      <Button title="Show Alert" onPress={showAlert} />
+      <Pressable
+        onPress={showAlert}
+        style={{...localStyles.button, backgroundColor: colors.primary}}>
+        <Text style={localStyles.buttonText}>Show Alert</Text>
+      </Pressable>
+      {/* <Button title="Show Alert" onPress={showAlert} /> */}
       <View style={{height: 10}} />
-      <Button title="Show Prompt" onPress={showPrompt} />
+      <TouchableOpacity
+        onPress={showPrompt}
+        style={{...localStyles.button, backgroundColor: colors.primary}}
+        activeOpacity={0.85}>
+        <Text style={localStyles.buttonText}>Show Prompt</Text>
+      </TouchableOpacity>
+      {/* <Button title="Show Prompt" onPress={showPrompt} /> */}
     </View>
   );
 };
+
+const localStyles = StyleSheet.create({
+  button: {
+    paddingVertical: 10,
+    borderRadius: 3,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  buttonText: {
+    fontSize: 20,
+    textTransform: 'uppercase',
+    fontWeight: 'bold',
+  },
+});
