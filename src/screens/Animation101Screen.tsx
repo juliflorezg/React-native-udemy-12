@@ -67,7 +67,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   purpleBox: {
-    backgroundColor: '#5856d6',
+    backgroundColor:
+      'hsl(358.2857142857143, 94.59459459459461%, 7.254901960784313%)',
     width: 150,
     height: 150,
   },
