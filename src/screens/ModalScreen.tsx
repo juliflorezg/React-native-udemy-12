@@ -1,5 +1,5 @@
 import React, {useContext, useState} from 'react';
-import {View, Button, Modal, Text, TouchableOpacity} from 'react-native';
+import {View, Modal, Text, TouchableOpacity} from 'react-native';
 import {HeaderTitle} from '../components/HeaderTitle';
 import {ThemeContext} from '../context/theme/ThemeContext';
 import {styles} from '../theme/appTheme';
